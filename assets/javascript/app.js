@@ -8,11 +8,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
   let userAnswers = [];
 
+  // UI variables
+  const timeLeft = document.querySelector('.time-left');
+  const triviaForm = document.querySelector('#trivia-form');
+ 
   // UI Functions
 
   loadUI = (trivia) => {
   trivia.forEach((question, index) => {
-    console.log(item);
+    console.log(question);
     console.log(index);
     
     
