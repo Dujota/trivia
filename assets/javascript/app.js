@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', e => {
   let correct = 0;
   let incorrect = 0;
   let unanswered = 0;
+  let counter = 10;
 
   // UI variables
   const timeLeft = document.querySelector('.time-left');
@@ -22,8 +23,18 @@ document.addEventListener('DOMContentLoaded', e => {
 
   // UI Function
   startQuiz = trivia => {
+    timer = setInterval(countdown, 1000);
     clearPrevResults();
     loadUI(trivia);
+  };
+
+  countdown = () => {
+    counter--;
+    document.querySelector('.time-left').innerHTML = counter;
+    if (counter === 0) {
+      document.querySelector('.submit').click();
+      console.log('ran out of time');
+    }
   };
 
   clearPrevResults = () => {
@@ -40,7 +51,7 @@ document.addEventListener('DOMContentLoaded', e => {
 
   loadUI = trivia => {
     document.querySelector('.timer').innerHTML = `<h5>Time Remaining:
-    <span class="time-left"></span> Seconds </h5>`;
+    <span class="time-left">120</span> Seconds </h5>`;
 
     trivia.forEach((item, index) => {
       const questionIndex = index;
@@ -68,8 +79,6 @@ document.addEventListener('DOMContentLoaded', e => {
     });
   };
 
-  loadBody = () => {};
-
   // GAME LOGIC
   checkAnswers = () => {
     trivia.forEach((item, index) => {
@@ -88,6 +97,7 @@ document.addEventListener('DOMContentLoaded', e => {
   };
 
   showResults = () => {
+    clearInterval(timer);
     // clear the container
     const container = document.querySelector('.container');
     container.classList.add('hide');
