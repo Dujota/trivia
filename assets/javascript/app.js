@@ -38,9 +38,10 @@ document.addEventListener('DOMContentLoaded', e => {
         inputMount.innerHTML += input;
       });
       // mount all the content created from our object
+      debugger;
       questionMount.innerHTML = question;
-      questionMount.appendChild(inputMount);
-      triviaForm.prepend(questionMount);
+      questionMount.append(inputMount);
+      triviaForm.firstElementChild.appendChild(questionMount);
     });
   };
 
