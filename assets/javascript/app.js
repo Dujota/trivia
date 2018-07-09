@@ -1,44 +1,55 @@
-document.addEventListener("DOMContentLoaded", e => {
+document.addEventListener('DOMContentLoaded', e => {
   const trivia = [
     {
-      question: "Which animal is a bird?",
-      options: ["doberman", "lion", "anaconda", "blue jay"],
-      answer: "blue jay"
+      question: 'Which animal is a bird?',
+      options: ['doberman', 'lion', 'anaconda', 'blue jay'],
+      answer: 'blue jay'
     },
     {
-      question: "Which animal is a bird?",
-      options: ["doberman", "lion", "anaconda", "blue jay"],
-      answer: "blue jay"
+      question: 'Which animal is a reptile?',
+      options: ['doberman', 'lion', 'anaconda', 'blue jay'],
+      answer: 'anaconda'
     }
   ];
 
-  let userAnswers = [];
-
   // UI variables
-  const timeLeft = document.querySelector(".time-left");
-  const triviaForm = document.querySelector("#trivia-form");
-  const question = document.querySelector(".question");
+  const timeLeft = document.querySelector('.time-left');
+  const triviaForm = document.querySelector('#trivia-form');
 
-  // UI Functions
-
+  // UI Function
   loadUI = trivia => {
     trivia.forEach((item, index) => {
-      questionIndex = index;
-      label = `<div id='${}' >
-        <label htmlFor="trivia">${item.question}</label> <br>
-        ${item.options.forEach(option => {
-          debugger;
+      const questionIndex = index;
 
-          document.querySelector(
-            `#${questionIndex}`
-          ).innerHTML += `<input type="radio" name=${questionIndex} value=${option} /> ${option}`;
-        })}
-        </div> `;
-      question.innerHTML += label;
+      //set up the UI mounting points
+      const questionMount = document.createElement('div');
+      questionMount.setAttribute('class', 'question');
+      const inputMount = document.createElement('div');
+      inputMount.setAttribute('id', `qnum${questionIndex}`);
 
-      debugger;
+      // create the form contents
+      const question = ` <br>
+      <label for="question-${questionIndex}">${item.question}</label>`;
+
+      item.options.forEach(option => {
+        const input = `<input type="radio" name="question-${questionIndex}" id="question-${questionIndex}" value="${option}"> ${option}
+        `;
+
+        inputMount.innerHTML += input;
+      });
+      // mount all the content created from our object
+      questionMount.innerHTML = question;
+      questionMount.appendChild(inputMount);
+      triviaForm.prepend(questionMount);
     });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log('clicked');
+  };
+
   loadUI(trivia);
+
+  triviaForm.addEventListener('click', handleSubmit);
 });
