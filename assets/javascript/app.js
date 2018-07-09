@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', e => {
       answer: 'anaconda'
     }
   ];
+  const correctAnswers = trivia.map(item => item.answer);
+  let correct = 0;
+  let wrong = 0;
 
   // UI variables
   const timeLeft = document.querySelector('.time-left');
@@ -32,25 +35,33 @@ document.addEventListener('DOMContentLoaded', e => {
       <label for="question-${questionIndex}">${item.question}</label>`;
 
       item.options.forEach(option => {
-        const input = `<input type="radio" name="question-${questionIndex}" id="question-${questionIndex}" value="${option}"> ${option}
+        const input = `<input type="radio" name="question-${questionIndex}" class="${questionIndex}" value="${option}"> ${option}
         `;
-
         inputMount.innerHTML += input;
       });
       // mount all the content created from our object
-      debugger;
       questionMount.innerHTML = question;
       questionMount.append(inputMount);
       triviaForm.firstElementChild.appendChild(questionMount);
     });
   };
 
+  // Handle Submit
   handleSubmit = e => {
     e.preventDefault();
-    console.log('clicked');
+    userAnswer = [...document.querySelectorAll('input')]
+      .filter(input => input.checked)
+      .map(ans => ans.value);
+
+    console.log(userAnswer); // logs thje radio button choices
+    checkAnswers(correctAnswers, userAnswer);
   };
 
-  loadUI(trivia);
+  checkAnswers = (correctAnswers, userAnswers) => {
+    console.log(correctAnswers);
+  };
 
-  triviaForm.addEventListener('click', handleSubmit);
+  // Load the Quiz-APP
+  loadUI(trivia);
+  triviaForm.addEventListener('submit', handleSubmit);
 });
