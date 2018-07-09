@@ -51,6 +51,9 @@ document.addEventListener('DOMContentLoaded', e => {
   handleSubmit = e => {
     e.preventDefault();
     checkAnswers();
+    console.log(
+      `correct ${correct}, incorrect ${incorrect}, unanswered ${unanswered}`
+    );
   };
 
   checkAnswers = () => {
@@ -65,6 +68,7 @@ document.addEventListener('DOMContentLoaded', e => {
           incorrect++;
         }
       });
+      unanswered = trivia.length - (incorrect + correct);
     });
   };
 
