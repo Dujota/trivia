@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', e => {
   ];
   const correctAnswers = trivia.map(item => item.answer);
   let correct = 0;
-  let wrong = 0;
+  let incorrect = 0;
+  let unanswered = 0;
 
   // UI variables
   const timeLeft = document.querySelector('.time-left');
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', e => {
       <label for="question-${questionIndex}">${item.question}</label>`;
 
       item.options.forEach(option => {
-        const input = `<input type="radio" name="question-${questionIndex}" class="${questionIndex}" value="${option}"> ${option}
+        const input = `<input type="radio" name="${questionIndex}" class="question-${questionIndex}" value="${option}"> ${option}
         `;
         inputMount.innerHTML += input;
       });
@@ -49,16 +50,22 @@ document.addEventListener('DOMContentLoaded', e => {
   // Handle Submit
   handleSubmit = e => {
     e.preventDefault();
-    userAnswer = [...document.querySelectorAll('input')]
-      .filter(input => input.checked)
-      .map(ans => ans.value);
-
-    console.log(userAnswer); // logs thje radio button choices
-    checkAnswers(correctAnswers, userAnswer);
+    checkAnswers();
   };
 
-  checkAnswers = (correctAnswers, userAnswers) => {
-    console.log(correctAnswers);
+  checkAnswers = () => {
+    trivia.forEach((item, index) => {
+      currentIndex = index;
+      [
+        ...document.querySelectorAll(`input.question-${currentIndex}:checked`)
+      ].forEach(input => {
+        if (input.value === trivia[currentIndex].answer) {
+          correct++;
+        } else {
+          incorrect++;
+        }
+      });
+    });
   };
 
   // Load the Quiz-APP
