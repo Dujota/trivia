@@ -21,7 +21,27 @@ document.addEventListener('DOMContentLoaded', e => {
   const triviaForm = document.querySelector('#trivia-form');
 
   // UI Function
+  startQuiz = trivia => {
+    clearPrevResults();
+    loadUI(trivia);
+  };
+
+  clearPrevResults = () => {
+    // Clear the previous quiz
+    correct = 0;
+    incorrect = 0;
+    unanswered = 0;
+    document.querySelector('.container').classList.remove('hide');
+    document.querySelector('.questions-body').innerHTML = '';
+
+    const prevResults = document.querySelector('.results');
+    prevResults.innerHTML = '';
+  };
+
   loadUI = trivia => {
+    document.querySelector('.timer').innerHTML = `<h5>Time Remaining:
+    <span class="time-left"></span> Seconds </h5>`;
+
     trivia.forEach((item, index) => {
       const questionIndex = index;
 
@@ -44,9 +64,13 @@ document.addEventListener('DOMContentLoaded', e => {
       questionMount.innerHTML = question;
       questionMount.append(inputMount);
       triviaForm.firstElementChild.appendChild(questionMount);
+      document.querySelector('.submit').classList.remove('hide');
     });
   };
 
+  loadBody = () => {};
+
+  // GAME LOGIC
   checkAnswers = () => {
     trivia.forEach((item, index) => {
       currentIndex = index;
@@ -63,16 +87,42 @@ document.addEventListener('DOMContentLoaded', e => {
     });
   };
 
-  // Handle Submit
-  handleSubmit = e => {
-    e.preventDefault();
-    checkAnswers();
+  showResults = () => {
+    // clear the container
+    const container = document.querySelector('.container');
+    container.classList.add('hide');
+    // Grab and inster to the results div
+    const result = document.querySelector('.results');
+    result.innerHTML = `
+    <div>
+      <h3>Correct Answers: ${correct}</h3>
+      <h3>Incorrect Answers: ${incorrect}</h3>
+      <h3>Unanswered Questions: ${unanswered}</h3>
+    </div>
+    `;
+
+    document.querySelector('.start').classList.remove('hide');
+
     console.log(
       `correct ${correct}, incorrect ${incorrect}, unanswered ${unanswered}`
     );
   };
 
+  // Handle Submit
+  handleSubmit = e => {
+    e.preventDefault();
+    checkAnswers();
+    showResults();
+  };
+
   // Load the Quiz-APP
-  loadUI(trivia);
+  document.querySelector('.start').addEventListener('click', e => {
+    e.preventDefault();
+    e.target.classList.add('hide');
+    clearPrevResults();
+    startQuiz(trivia);
+  });
+
+  // Check for the answers submitted when done
   triviaForm.addEventListener('submit', handleSubmit);
 });
