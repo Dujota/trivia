@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', e => {
   let correct = 0;
   let incorrect = 0;
   let unanswered = 0;
-  let counter = 10;
+  let counter = 240;
 
   // UI variables
   const timeLeft = document.querySelector('.time-left');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', e => {
 
   loadUI = trivia => {
     document.querySelector('.timer').innerHTML = `<h5>Time Remaining:
-    <span class="time-left">120</span> Seconds </h5>`;
+    <span class="time-left">${counter}</span> Seconds </h5>`;
 
     trivia.forEach((item, index) => {
       const questionIndex = index;
