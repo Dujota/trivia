@@ -47,15 +47,6 @@ document.addEventListener('DOMContentLoaded', e => {
     });
   };
 
-  // Handle Submit
-  handleSubmit = e => {
-    e.preventDefault();
-    checkAnswers();
-    console.log(
-      `correct ${correct}, incorrect ${incorrect}, unanswered ${unanswered}`
-    );
-  };
-
   checkAnswers = () => {
     trivia.forEach((item, index) => {
       currentIndex = index;
@@ -70,6 +61,15 @@ document.addEventListener('DOMContentLoaded', e => {
       });
       unanswered = trivia.length - (incorrect + correct);
     });
+  };
+
+  // Handle Submit
+  handleSubmit = e => {
+    e.preventDefault();
+    checkAnswers();
+    console.log(
+      `correct ${correct}, incorrect ${incorrect}, unanswered ${unanswered}`
+    );
   };
 
   // Load the Quiz-APP
