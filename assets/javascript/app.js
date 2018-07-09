@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', e => {
     correct = 0;
     incorrect = 0;
     unanswered = 0;
+    counter = 240;
     document.querySelector('.container').classList.remove('hide');
     document.querySelector('.questions-body').innerHTML = '';
 
