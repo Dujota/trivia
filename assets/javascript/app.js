@@ -43,13 +43,15 @@ document.addEventListener('DOMContentLoaded', e => {
     incorrect = 0;
     unanswered = 0;
     counter = 240;
-    document.querySelector('.container').classList.remove('hide');
+    document.querySelector('.card-body').classList.remove('hide');
     document.querySelector('.questions-body').innerHTML = '';
     document.querySelector('.results').innerHTML = '';
   };
 
   loadUI = trivia => {
-    document.querySelector('.timer').innerHTML = `<h5>Time Remaining:
+    document.querySelector(
+      '.timer'
+    ).innerHTML = `<h5 class="card-title">Time Remaining:
     <span class="time-left">${counter}</span> Seconds </h5>`;
 
     trivia.forEach((item, index) => {
@@ -63,7 +65,11 @@ document.addEventListener('DOMContentLoaded', e => {
 
       // create the form contents
       const question = ` <br>
-      <label for="question-${questionIndex}">${item.question}</label>`;
+      <label for="question-${questionIndex}">
+        <h2 class="card-title">
+          ${item.question}
+        </h2>
+      </label>`;
 
       item.options.forEach(option => {
         const input = `<input type="radio" class="question-${questionIndex}" value="${option}"> ${option}
@@ -97,8 +103,8 @@ document.addEventListener('DOMContentLoaded', e => {
 
   showResults = () => {
     clearInterval(timer);
-    // clear the container
-    document.querySelector('.container').classList.add('hide');
+    // clear the card-body
+    document.querySelector('.card-body').classList.add('hide');
     // insert the quiz scores into results div
     document.querySelector('.results').innerHTML = `
     <div>

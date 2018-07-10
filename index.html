@@ -14,22 +14,31 @@
 </head>
 
 <body>
-  <div class="headline">
-    <h1>Trivia Game</h1>
+  <div class="card">
+    <h1 class="card-header headline">Trivia Game</h1>
+
+    <div class="card-body text-center">
+      <div class="timer"></div>
+
+      <form id="trivia-form">
+        <div class="questions-body"></div>
+
+        <br>
+
+        <button class="btn btn-primary submit hide" type="submit">Submit Your Answers</button>
+
+      </form>
+
+    </div>
+
+    <button class="btn-primary btn btn-lg start">Take the Quiz?</button>
+
+    <div class="card-footer text-muted text-center">
+      <h6>Having fun?</h6>
+      <div class="results"></div>
+    </div>
   </div>
 
-  <button class="btn-primary btn start">Start Quiz</button>
-
-  <div class="results"></div>
-
-  <div class="container">
-    <div class="timer"></div>
-    <form id="trivia-form">
-      <div class="questions-body"></div>
-      <br>
-      <button class="massive ui button submit hide" type="submit">Submit Your Answers</button>
-    </form>
-  </div>
 
   <script src="./assets/javascript/app.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
