@@ -100,8 +100,7 @@ document.addEventListener('DOMContentLoaded', e => {
   showResults = () => {
     clearInterval(timer);
     // clear the container
-    const container = document.querySelector('.container');
-    container.classList.add('hide');
+    document.querySelector('.container').classList.add('hide');
     // Grab and inster to the results div
     const result = document.querySelector('.results');
     result.innerHTML = `
@@ -134,6 +133,6 @@ document.addEventListener('DOMContentLoaded', e => {
     startQuiz(trivia);
   });
 
-  // Check for the answers submitted when done
+  // Check the answers submitted when done quiz
   triviaForm.addEventListener('submit', handleSubmit);
 });
