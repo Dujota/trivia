@@ -11,29 +11,29 @@ document.addEventListener('DOMContentLoaded', e => {
       answer: 'anaconda'
     }
   ];
-  const correctAnswers = trivia.map(item => item.answer);
+
   let correct = 0;
   let incorrect = 0;
   let unanswered = 0;
   let counter = 240;
 
   // UI variables
-  const timeLeft = document.querySelector('.time-left');
   const triviaForm = document.querySelector('#trivia-form');
 
   // UI Function
   startQuiz = trivia => {
-    timer = setInterval(countdown, 1000);
+    timer = setInterval(countdown, 1000); // every second call countdown
     clearPrevResults();
     loadUI(trivia);
   };
 
   countdown = () => {
+    // decrement the counter by 1 second, display it
     counter--;
     document.querySelector('.time-left').innerHTML = counter;
+    // when counter runs out, submit the quiz
     if (counter === 0) {
       document.querySelector('.submit').click();
-      console.log('ran out of time');
     }
   };
 
