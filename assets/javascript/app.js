@@ -38,16 +38,14 @@ document.addEventListener('DOMContentLoaded', e => {
   };
 
   clearPrevResults = () => {
-    // Clear the previous quiz
+    // Clear the previous quiz results
     correct = 0;
     incorrect = 0;
     unanswered = 0;
     counter = 240;
     document.querySelector('.container').classList.remove('hide');
     document.querySelector('.questions-body').innerHTML = '';
-
-    const prevResults = document.querySelector('.results');
-    prevResults.innerHTML = '';
+    document.querySelector('.results').innerHTML = '';
   };
 
   loadUI = trivia => {
@@ -68,7 +66,7 @@ document.addEventListener('DOMContentLoaded', e => {
       <label for="question-${questionIndex}">${item.question}</label>`;
 
       item.options.forEach(option => {
-        const input = `<input type="radio" name="${questionIndex}" class="question-${questionIndex}" value="${option}"> ${option}
+        const input = `<input type="radio" class="question-${questionIndex}" value="${option}"> ${option}
         `;
         inputMount.innerHTML += input;
       });
