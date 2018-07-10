@@ -101,9 +101,8 @@ document.addEventListener('DOMContentLoaded', e => {
     clearInterval(timer);
     // clear the container
     document.querySelector('.container').classList.add('hide');
-    // Grab and inster to the results div
-    const result = document.querySelector('.results');
-    result.innerHTML = `
+    // insert the quiz scores into results div
+    document.querySelector('.results').innerHTML = `
     <div>
       <h3>Correct Answers: ${correct}</h3>
       <h3>Incorrect Answers: ${incorrect}</h3>
