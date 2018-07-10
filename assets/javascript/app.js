@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', e => {
       </label>`;
 
       item.options.forEach(option => {
-        const input = `<input type="radio" class="question-${questionIndex}" value="${option}"> ${option}
+        const input = `<input type="radio" class="question-${questionIndex} " value="${option}"> ${option}
         `;
         inputMount.innerHTML += input;
       });
